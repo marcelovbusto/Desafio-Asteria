@@ -119,7 +119,7 @@ Antes de começar, certifique-se de que você possui os seguintes softwares inst
 
 ## **Exemplo de Uso**
 
-1. Acesse o sistema no navegador em `https://localhost:5001`.
+1. Acesse o sistema no Visual Studio 2022 iniciando pelo https.
 2. Navegue até a página **"Importar Planilha"**.
 3. Faça upload de um arquivo Excel com os seguintes campos (ordem esperada):
    - **Data**, **Código Cliente**, **Categoria**, **SKU**, **Produto**, **Quantidade**, **Valor**.
