@@ -26,6 +26,7 @@ Bem-vindo ao **Desafio Asteria**, um sistema robusto e eficiente para importar e
 - **Chart.js**: Biblioteca para gráficos dinâmicos e interativos.
 - **Bootstrap 5**: Framework front-end para design responsivo e moderno.
 - **Font Awesome**: Ícones modernos para melhorar a interface do usuário.
+- **BulkInsert** Biblioteca de alta performance para manipulação em massa de dados, garantindo maior velocidade e eficiência na importação de grandes volumes.
 
 ---
 
