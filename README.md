@@ -120,12 +120,22 @@ Antes de começar, certifique-se de que você possui os seguintes softwares inst
 ## **Exemplo de Uso**
 
 1. Acesse o sistema no Visual Studio 2022 iniciando pelo https.
+ ![image](https://github.com/user-attachments/assets/351449df-3529-4927-87b6-15e19a186f83)
+
 2. Navegue até a página **"Importar Planilha"**.
+   ![image](https://github.com/user-attachments/assets/32aec5de-97eb-4952-87f0-15ebc0f94be2)
+
 3. Faça upload de um arquivo Excel com os seguintes campos (ordem esperada):
    - **Data**, **Código Cliente**, **Categoria**, **SKU**, **Produto**, **Quantidade**, **Valor**.
+  ![image](https://github.com/user-attachments/assets/408ef4f0-c9c5-430f-9d82-5fac15f709e5)
+
 4. Após a importação, visualize os dados em:
    - **Listagem de Vendas**: Tabela detalhada com filtros.
-   - **Relatórios Trimestrais**: Gráficos e análises detalhadas.
+     ![image](https://github.com/user-attachments/assets/326aa43b-2b5a-47af-b422-5c47c5d751c9)
+
+   - **Relatórios Trimestrais**: Gráficos e análises detalhadas, sendo possivel filtrar o Gráfico de Vendas pelo Valor Total (R$) ou Quantidade Total.
+ ![image](https://github.com/user-attachments/assets/5b291298-fcdd-4cc0-b723-c57d7915c47a)
+
 
 ---
 
