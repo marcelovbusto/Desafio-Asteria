@@ -1,0 +1,119 @@
+﻿@model IEnumerable<AsteriaChallenger.Models.SalesData>
+
+@{
+    ViewData["Title"] = "Listagem de Vendas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int totalRegistros = ViewBag.TotalRegistros ?? 0;
+    decimal valorTotal = ViewBag.ValorTotal ?? 0;
+    int quantidadeTotal = ViewBag.QuantidadeTotal ?? 0;
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int pageSize = ViewBag.PageSize ?? 50;
+}
+
+<div class="container my-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+            <h4 class="mb-0">Listagem de Vendas</h4>
+        </div>
+        <div class="card-body">
+            <!-- Resumo -->
+            <div class="row text-center mb-4">
+                <div class="col-md-4">
+                    <h6>Total de Registros</h6>
+                    <p class="fs-5 fw-bold">@totalRegistros</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Valor Total (Filtrado)</h6>
+                    <p class="fs-5 fw-bold">@valorTotal.ToString("C")</p>
+                </div>
+                <div class="col-md-4">
+                    <h6>Quantidade Total (Filtrada)</h6>
+                    <p class="fs-5 fw-bold">@quantidadeTotal</p>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <form method="get" class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <label for="month" class="form-label">Mês:</label>
+                    <input type="number" name="month" id="month" class="form-control" placeholder="Ex: 1" />
+                </div>
+                <div class="col-md-3">
+                    <label for="codigoCliente" class="form-label">Código Cliente:</label>
+                    <input type="text" name="codigoCliente" id="codigoCliente" class="form-control" placeholder="Ex: 12345" />
+                </div>
+                <div class="col-md-3">
+                    <label for="categoria" class="form-label">Categoria:</label>
+                    <input type="text" name="categoria" id="categoria" class="form-control" placeholder="Ex: Eletrônicos" />
+                </div>
+                <div class="col-md-3">
+                    <label for="sku" class="form-label">SKU:</label>
+                    <input type="text" name="sku" id="sku" class="form-control" placeholder="Ex: 00123" />
+                </div>
+                <div class="col-md-12 text-end">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-funnel"></i> Filtrar
+                    </button>
+                </div>
+            </form>
+
+            <!-- Tabela -->
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Cód. Cliente</th>
+                            <th>Categoria</th>
+                            <th>SKU</th>
+                            <th>Produto</th>
+                            <th>Valor</th>
+                            <th>Qtd</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.DataVenda.ToShortDateString()</td>
+                                <td>@item.CodigoCliente</td>
+                                <td>@item.Categoria</td>
+                                <td>@item.SKU</td>
+                                <td>@item.Produto</td>
+                                <td>@item.Valor.ToString("C")</td>
+                                <td>@item.Quantidade</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginação -->
+            <nav aria-label="Paginação" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    @if (currentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="Index" asp-route-page="@(currentPage - 1)" asp-route-pageSize="@pageSize">
+                                <i class="bi bi-chevron-left"></i> Anterior
+                            </a>
+                        </li>
+                    }
+                    <li class="page-item disabled">
+                        <span class="page-link">Página @currentPage</span>
+                    </li>
+                    @if ((currentPage * pageSize) < totalRegistros)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-action="Index" asp-route-page="@(currentPage + 1)" asp-route-pageSize="@pageSize">
+                                Próxima <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

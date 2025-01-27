@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Importar Planilha";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Cartão para o formulário -->
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Importar Planilha</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted text-center mb-4">
+                        Envie sua planilha no formato Excel para processar os dados.
+                    </p>
+                    <form method="post" enctype="multipart/form-data" asp-controller="Import" asp-action="Index">
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label">Selecione o arquivo Excel:</label>
+                            <input type="file" name="file" id="fileInput" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">
+                            <i class="bi bi-upload"></i> Importar Arquivo
+                        </button>
+                    </form>
+
+                    <!-- Mensagem de sucesso ou erro -->
+                    @if (TempData["Message"] != null)
+                    {
+                        <div class="alert alert-success mt-3 text-center">
+                            @TempData["Message"]
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

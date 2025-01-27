@@ -1,0 +1,126 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Relatórios de Trimestres";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h4 class="mb-0">Relatórios de Vendas por Trimestre</h4>
+        </div>
+        <div class="card-body">
+            <p class="text-muted text-center mb-4">
+                Análise das vendas agrupadas por ano e trimestre. Os resultados incluem o valor total faturado e a quantidade de itens vendidos.
+            </p>
+
+            <!-- Tabela estilizada -->
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>Ano</th>
+                            <th>Trimestre</th>
+                            <th>Valor Total</th>
+                            <th>Quantidade Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.Ano</td>
+                                <td class="text-center">@item.Trimestre</td>
+                                <td class="text-end">@item.ValorTotal.ToString("C")</td>
+                                <td class="text-end">@item.QuantidadeTotal</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Gráfico -->
+            <div class="mt-5">
+                <h5 class="text-center">Gráfico de Vendas por Trimestre</h5>
+                <canvas id="myChart" style="max-width: 100%; height: 400px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Adicionar Chart.js via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Arrays JavaScript para receber dados do Model
+    var labels = [];
+    var dataValor = [];
+    var dataQuant = [];
+
+    @foreach (var item in Model)
+    {
+        <text>
+                labels.push('@($"{item.Ano} - T{item.Trimestre}")');
+                dataValor.push(@item.ValorTotal);
+                dataQuant.push(@item.QuantidadeTotal);
+        </text>
+        ;
+    }
+
+    // Configurar o gráfico com eixos duplos
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Valor Total (R$)',
+                    data: dataValor,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Quantidade Total',
+                    data: dataQuant,
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            },
+            scales: {
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'Valor Total (R$)'
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'Quantidade Total'
+                    },
+                    grid: {
+                        drawOnChartArea: false // Remove linhas do gráfico secundário
+                    }
+                }
+            }
+        }
+    });
+</script>
