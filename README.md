@@ -70,7 +70,7 @@ Antes de começar, certifique-se de que você possui os seguintes softwares inst
 
 1. Clone o repositório:
     ```bash
-    git clone [git@github.com:marcelovbusto/Desafio-Asteria.git](https://github.com/marcelovbusto/Desafio-Asteria.git)](https://github.com/marcelovbusto/Desafio-Asteria.git(https://github.com/marcelovbusto/Desafio-Asteria.git)
+    git clone https://github.com/marcelovbusto/Desafio-Asteria.git
     cd desafio-asteria
     ```
 
