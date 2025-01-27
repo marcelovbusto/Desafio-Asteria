@@ -129,23 +129,6 @@ Antes de começar, certifique-se de que você possui os seguintes softwares inst
 
 ---
 
-## **Contribuindo**
-
-Quer contribuir com o projeto? Siga os passos abaixo:
-
-1. Faça um fork do repositório.
-2. Crie um branch para sua funcionalidade:
-    ```bash
-    git checkout -b feature/nova-funcionalidade
-    ```
-3. Faça as alterações necessárias.
-4. Teste suas alterações:
-    ```bash
-    dotnet test
-    ```
-5. Envie um pull request para o repositório principal.
-
----
 
 ## **Contato**
 
